@@ -1,38 +1,42 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Home = () => {
   return (
-    <nav className="flex justify-between items-center bg-gray-900 p-4 text-white">
-      <div className="text-2xl font-bold">NetSentinel</div>
-      <ul className="flex gap-6">
-        <li><a href="/index.html" className="hover:text-gray-400">Home</a></li>
-        <li><a href="/about" className="hover:text-gray-400">About</a></li>
-        <li><a href="/services" className="hover:text-gray-400">Services</a></li>
-        <li><a href="/contact" className="hover:text-gray-400">Contact</a></li>
-        <li><a href="/login" className="bg-orange-500 px-4 py-2 rounded hover:bg-orange-600">Login</a></li>
-        <li><button className="bg-orange-500 px-4 py-2 rounded hover:bg-orange-600">Sign Up</button></li>
-      </ul>
-    </nav>
-  );
-};
+    <div className="min-h-screen bg-gray-100">
+      {/* Navbar */}
+      <nav className="bg-blue-600 text-white p-4 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="text-2xl font-bold">NetSentinel</div>
+          <div className="flex items-center gap-4">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-4 py-2 rounded border border-white text-black"
+            />
+            <Link to="/login">
+              <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-200">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-200">Sign Up</button>
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-const Hero = () => {
-  return (
-    <header className="text-center py-24 bg-gray-800 text-white">
-      <h1 className="text-4xl font-bold">Welcome to NetSentinel</h1>
-      <p className="text-lg mt-4">AI-driven Threat Detection System for IoT Networks</p>
-      <button className="mt-6 bg-orange-500 px-6 py-3 rounded text-white hover:bg-orange-600" onClick={() => alert('Getting Started with NetSentinel!')}>Get Started</button>
-    </header>
-  );
-};
-
-const Homepage = () => {
-  return (
-    <div>
-      <Navbar />
-      <Hero />
+      {/* Hero Section */}
+      <div className="container mx-auto text-center py-20">
+        <h1 className="text-5xl font-bold text-blue-700 mb-4">Welcome to NetSentinel</h1>
+        <p className="text-xl text-gray-600 mb-6">
+          Your Trusted AI-driven Threat Detection System for IoT Networks
+        </p>
+        <button className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
+          Learn More
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Homepage;
+export default Home;
+
