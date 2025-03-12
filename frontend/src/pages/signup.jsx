@@ -9,7 +9,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
     setError("");
     
@@ -20,6 +20,25 @@ const Signup = () => {
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5001/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert(data.message);
+        navigate("/login");
+      } else {
+        setError(data.error || "Signup failed");
+      }
+    } catch (error) {
+      setError("Error connecting to the server");
     }
     
     alert(`Welcome to NetSentinel, ${username}!`);
@@ -87,4 +106,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup; 
